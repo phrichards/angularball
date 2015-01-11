@@ -1,0 +1,199 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="angularBallApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="container">
+      <div class="header">
+        
+      </div>
+
+      <div ng-view="">
+        <div class="jumbotron clearfix" ng-controller="MainCtrl" ng-init="displayGames()">
+          <h1>Angularball</h1>
+          <h2>One day in MLB history, presented with Angular JS</h2>
+          <!-- <p>{{boxscore}}</p> -->
+          <h3 class="date">August 5, 2014</h2>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+              Select a Game
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li ng-repeat="team in teams">
+                <a href="" data-game="{{team.codes}}" ng-click="displayGame(team.codes)">{{team.teams}}</a>
+              </li>
+            </ul>
+          </div><!-- /.dropdown -->
+          <div class="results clearfix">
+
+            <div class="awayteam" ng-show="gameSelected">
+              <h3>Away</h3>
+              <img ng-src="{{awaySrc}}" alt="" class="awaylogo">
+              <p>Final Score: {{awayScore}}</p>
+              <p>Starting Pitcher: {{awayPitcher}}</p>
+              <!-- <p>Starting Lineup:</p>
+              <ol>
+                <li ng-repeat="batter in awayLineup">{{batter}}</li>
+              </ol> -->
+            </div>
+
+            <div class="hometeam" ng-show="gameSelected">
+              <h3>Home</h3>
+              <img src="{{homeSrc}}" alt="" class="homelogo">
+              <p>Final Score: {{homeScore}}</p>
+              <p>Starting Pitcher: {{homePitcher}}</p>
+              <!-- <p>Starting Lineup:</p>
+              <ol>
+                <li ng-repeat="batter in homeLineup">{{batter}}</li>
+              </ol> -->
+            </div>
+
+            <div class="linescore" ng-show="gameSelected">
+              <table class="table-bordered">
+                <th>
+                  <td ng-repeat="inning in innings track by $index">{{inning}}</td>
+                  <!-- <td></td> -->
+                  <td class="tableConstant">R</td>
+                  <td class="tableConstant">H</td>
+                  <td class="tableConstant">E</td>
+                </th>
+                <tr>
+                  <tbody class="awayCells">
+                    <th class="tableText tableConstant" id="tableAway">{{awayTeam}}</td>
+                    <td ng-repeat="score in awayScores track by $index | limitTo:9">{{score}}</td>
+                    <!-- <td class="stop">0</td> -->
+                    <!-- <td></td> -->
+                    <td id="awayFinalScore" class="tableConstant">{{awayRuns}}</td>
+                    <td id="awayHits" class="tableConstant">{{awayHits}}</td>
+                    <td id="awayErrors" class="tableConstant">{{awayErrors}}</td>
+                  </tbody>  
+                </tr>
+                <tr>
+                  <th class="tableText tableConstant" id="tableHome">{{homeTeam}}</td>
+                  <td ng-repeat="score in homeScores track by $index | limitTo:9">{{score}}</td>
+                  <!-- <td class="stop">0</td> -->
+                  <!-- <td></td> -->
+                  <td id="homeFinalScore" class="tableConstant">{{homeRuns}}</td>
+                  <td id="homeHits" class="tableConstant">{{homeHits}}</td>
+                  <td id="homeErrors" class="tableConstant">{{homeErrors}}</td>
+                </tr>
+              </table>
+            </div> <!-- /.linescore -->
+
+            <div class="diamond clearfix" ng-show="gameSelected">
+              <h4>Fielding</h4>
+              <button class="btn btn-primary away" ng-click="awayClicked()">{{awayTeam}}</button>
+              <button class="btn btn-primary home" ng-click="homeClicked()">{{homeTeam}}</button>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Your_Icon" x="0px" y="0px" width="100px" height="100px" viewBox="5.0 -10.0 100.0 135.0" enable-background="new 0 0 100 100" xml:space="preserve">
+              <g>
+                <path d="M49.999,72.58c1.788,0,3.47-0.695,4.732-1.959c1.265-1.263,1.962-2.944,1.964-4.733c0-1.79-0.697-3.472-1.963-4.734   c-1.264-1.266-2.945-1.962-4.733-1.962c-1.789,0-3.471,0.696-4.732,1.961c-1.266,1.264-1.963,2.945-1.963,4.735   c0,1.789,0.697,3.47,1.962,4.731C46.528,71.885,48.21,72.58,49.999,72.58z"/>
+                <path d="M50,5.371C22.43,5.371,0,27.8,0,55.37v1.024l50.14,38.234L100,56.391V55.37C100,27.8,77.57,5.371,50,5.371z M45.551,43.347   l3.312,2.174c0.346,0.226,0.741,0.339,1.137,0.339s0.791-0.113,1.137-0.339l3.312-2.176L75.729,62.29l-2.209,2.027   c-0.423,0.388-0.665,0.935-0.67,1.509s0.229,1.124,0.647,1.52l2.305,2.181L60.47,81.491l-5.374,4.121l-3.72-3.31   c-0.786-0.698-1.966-0.698-2.752,0l-3.61,3.211L30.668,74.575l-6.472-5.05l2.305-2.18c0.417-0.396,0.652-0.945,0.647-1.52   s-0.247-1.121-0.67-1.509l-2.208-2.026L45.551,43.347z M83.264,64.009L50,34.397L16.771,63.978L4.15,54.354   C4.693,29.535,25.052,9.511,50,9.511c24.949,0,45.31,20.025,45.85,44.847L83.264,64.009z"/>
+              </g>
+              </svg>
+  
+              <div class="diamondNamesAway" ng-repeat="player in sortedAwayLineup track by $index" ng-show="away">
+                <span class="left" ng-if="player.position == 'LF'">{{player.name}}</span>
+                <span class="center" ng-if="player.position == 'CF'">{{player.name}}</span>
+                <span class="right" ng-if="player.position == 'RF'">{{player.name}}</span>
+                <span class="third" ng-if="player.position == '3B'">{{player.name}}</span>
+                <span class="short" ng-if="player.position == 'SS'">{{player.name}}</span>
+                <span class="second" ng-if="player.position == '2B'">{{player.name}}</span>
+                <span class="first" ng-if="player.position == '1B'">{{player
+                .name}}</span>
+                <span class="catcher" ng-if="player.position == 'C'">{{player.name}}</span>
+              </div> <!-- /.diamondNamesHome -->
+              <span class="pitcher" ng-show="away">{{awayPitcher}}</span>
+
+              <div class="diamondNamesHome" ng-repeat="player in sortedHomeLineup track by $index" ng-show="home">
+                <span class="left" ng-if="player.position == 'LF'">{{player.name}}</span>
+                <span class="center" ng-if="player.position == 'CF'">{{player.name}}</span>
+                <span class="right" ng-if="player.position == 'RF'">{{player.name}}</span>
+                <span class="third" ng-if="player.position == '3B'">{{player.name}}</span>
+                <span class="short" ng-if="player.position == 'SS'">{{player.name}}</span>
+                <span class="second" ng-if="player.position == '2B'">{{player.name}}</span>
+                <span class="first" ng-if="player.position == '1B'">{{player
+                .name}}</span>
+                <span class="catcher" ng-if="player.position == 'C'">{{player.name}}</span>
+              </div> <!-- /.diamondNamesHome -->
+              <span class="pitcher" ng-show="home">{{homePitcher}}</span>
+
+            </div> <!-- /.diamond -->
+
+          </div> <!-- /.results -->
+        </div> <!-- /.jumbotron -->
+
+      </div>
+
+      <div class="footer">
+        
+      </div>
+    </div>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/button.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tab.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <!--<script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>-->
+        <!-- endbuild -->
+</body>
+</html>

@@ -1,0 +1,294 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
+// endbower
+
+$primaryColour: #9C9580;
+$accentColour: #8D9879;
+
+@font-face {
+  font-family: 'Bosox';
+  src: url('fonts/Bosox.ttf');
+}
+
+@font-face {
+  font-family: 'Junction';
+  src: url('fonts/junction-regular.ttf');
+}
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+
+  /* Make the masthead heading the same height as the navigation */
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+  }
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+
+  .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+  }
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+
+  p + h4 {
+    margin-top: 28px;
+  }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 940px;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+// ===== My Styles Below =====
+
+body {
+  background-color: $primaryColour;
+  color: white;
+  font-family: 'Junction', sans-serif;
+}
+
+.container .jumbotron {
+  padding: 0;
+  background-color: $primaryColour;
+  position: relative;
+}
+
+.jumbotron h1 {
+  font-family: 'Bosox', sans-serif;
+  font-size: 115px;
+}
+
+.dropdown-toggle {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 75px;
+  left: 300px;
+}
+
+.btn-primary,
+.btn-default {
+  background-color: $accentColour;
+  border: 1px solid white;
+  color: black;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-default:hover,
+.btn-default:focus,
+.open > .btn-default.dropdown-toggle {
+  background-color: darken($accentColour, 5%);
+}
+
+.homeHeader,
+.awayHeader {
+  // position: absolute;
+  // top: 120px;
+}
+
+.homeHeader {
+  right: 0;
+}
+
+.awayHeader {
+  left: 0;
+}
+
+.hometeam,
+.awayteam {
+  // position: absolute;
+  // bottom: 210px;
+  width: 40%;
+  margin-bottom: 0;
+}
+
+.awayteam {
+  float: left;
+}
+
+.hometeam {
+  float: right;
+}
+
+.homelogo,
+.awaylogo {
+  height: 200px;
+  width: 200px;
+}
+
+.homescore,
+.awayscore {
+  font-size: 4em;
+}
+
+.awayscore {
+  margin-left: 5%;
+}
+
+.homescore {
+  margin-right: 5%;
+}
+
+.diamond {
+  position: relative;
+  float: left;
+  width: 100%;
+}
+
+.left,
+.center,
+.right,
+.third,
+.short,
+.second,
+.first,
+.catcher,
+.pitcher {
+  position: absolute;
+  color: black;
+  border: 1px solid white;
+  background: $accentColour;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.left {
+  top: 35%;
+  left: 25%;
+}
+
+.center {
+  top: 25%;
+  left: 45%;
+}
+
+.right {
+  top: 35%;
+  right: 27%;
+}
+
+.third {
+  top: 58%;
+  left: 27%;
+}
+
+.short {
+  top: 48%;
+  left: 34%;
+}
+
+.second {
+  top: 42%;
+  left: 46%;
+}
+
+.first {
+  top: 58%;
+  right: 24%;
+}
+
+.catcher {
+  bottom: 25%;
+  left: 46%;
+}
+
+.pitcher {
+  bottom: 39%;
+  left: 46%;
+}
+
+svg#Your_Icon {
+  width: 100%;
+  height: 100%;
+  margin-left: 4%;
+}
+
+.linescore {
+  // position: absolute;
+  float: left;
+  margin-top: 25px;
+}
+
+table {
+  margin: 40px;
+}
+
+td {
+  padding: 20px;
+}
+
+.tableText {
+  padding: 20px 50px;
+}
+
+.tableConstant {
+  background-color: $accentColour;
+}
