@@ -112,6 +112,11 @@ body {
   font-family: 'Junction', sans-serif;
 }
 
+.header,
+.footer {
+  border: none;
+}
+
 .container .jumbotron {
   padding: 0;
   background-color: $primaryColour;
@@ -121,10 +126,16 @@ body {
 .jumbotron h1 {
   font-family: 'Bosox', sans-serif;
   font-size: 115px;
+  margin-top: 0;
+}
+
+h3.date {
+  margin-top: 30px;
 }
 
 .dropdown-toggle {
   position: relative;
+  margin-top: 30px;
 }
 
 .dropdown-menu {
@@ -182,6 +193,7 @@ body {
 .awaylogo {
   height: 200px;
   width: 200px;
+  margin-bottom: 30px;
 }
 
 .homescore,
@@ -274,7 +286,7 @@ svg#Your_Icon {
 .linescore {
   // position: absolute;
   float: left;
-  margin-top: 25px;
+  margin-top: 0;
 }
 
 table {
